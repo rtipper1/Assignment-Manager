@@ -1,14 +1,16 @@
+import re
+
 class Assignment:
-    def __init__(self, title, description, due_date, grade, completed):
+    def __init__(self, title, description, due_datetime, grade, completed):
         self.set_title(title)
         self.set_description(description)
-        self.set_due_date(due_date)
+        self.set_due_datetime(due_datetime)
         self.set_grade(grade)
         self.set_completed(completed)
 
     def __str__(self):
         return (f"Assignment(title={self.title}, description={self.description}, "
-                f"due_date={self.due_date}, grade={self.grade}, completed={self.completed})")
+                f"due_datetime={self.due_datetime}, grade={self.grade}, completed={self.completed})")
     
     def set_title(self, title):
         if self.validate_title(title):
@@ -22,9 +24,9 @@ class Assignment:
         else:
             raise ValueError("Description must be a non-empty string or None")
 
-    def set_due_date(self, due_date):
-        if self.validate_due_date(due_date):
-            self.due_date = due_date
+    def set_due_datetime(self, due_datetime):
+        if self.validate_due_datetime(due_datetime):
+            self.due_datetime = due_datetime
         else:
             raise ValueError("Due date must be a non-empty string or None")
 
@@ -58,10 +60,12 @@ class Assignment:
         return
     
     # Due date needs to be a non-empty string or None
-    def validate_due_date(self, due_date):
-        if due_date is None:
+    def validate_due_datetime(self, due_datetime):
+        
+
+        if due_datetime is None:
             return True
-        if isinstance(due_date, str) and due_date:
+        if isinstance(due_datetime, str) and re.match(r"\d{2}/\d{2}/\d{4}, \d{2}:\d{2} (AM|PM)", due_datetime):
             return True
         return False
     
@@ -85,8 +89,8 @@ class Assignment:
     def get_description(self):
         return self.description
     
-    def get_due_date(self):
-        return self.due_date
+    def get_due_datetime(self):
+        return self.due_datetime
     
     def get_grade(self):
         return self.grade
