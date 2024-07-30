@@ -36,7 +36,7 @@ def test_set_due_datetime():
     assignment = Assignment("Assignment 1", "Description 1", "07/30/2024, 11:59 PM", 100, False)
     
     # Test invalid due_date
-    with pytest.raises(ValueError, match="Due date must be a non-empty string or None"):
+    with pytest.raises(ValueError, match=r"Due date must be a non-empty string of format 'MM/DD/YYYY, HH:MM \(PM\|AM\)' or None"):
         assignment.set_due_datetime("")
     
     assignment.set_due_datetime("07/30/2024, 11:59 PM")
@@ -76,7 +76,7 @@ def test_initialization():
         Assignment("", "Description 1", "07/30/2024, 11:59 PM", 100, False)
     with pytest.raises(ValueError, match="Description must be a non-empty string or None"):
         Assignment("Assignment 1", "", "07/30/2024, 11:59 PM", 100, False)
-    with pytest.raises(ValueError, match="Due date must be a non-empty string or None"):
+    with pytest.raises(ValueError, match=r"Due date must be a non-empty string of format 'MM/DD/YYYY, HH:MM \(PM\|AM\)' or None"):
         Assignment("Assignment 1", "Description 1", "", 100, False)
     with pytest.raises(ValueError, match="Grade must be a non-negative number or None"):
         Assignment("Assignment 1", "Description 1", "07/30/2024, 11:59 PM", -1, False)
