@@ -28,7 +28,7 @@ class Assignment:
         if self.validate_due_datetime(due_datetime):
             self.due_datetime = due_datetime
         else:
-            raise ValueError("Due date must be a non-empty string or None")
+            raise ValueError("Due date must be a non-empty string of format 'MM/DD/YYYY, HH:MM (PM|AM)' or None")
 
     def set_grade(self, grade):
         if self.validate_grade(grade):
@@ -61,8 +61,6 @@ class Assignment:
     
     # Due date needs to be a non-empty string or None
     def validate_due_datetime(self, due_datetime):
-        
-
         if due_datetime is None:
             return True
         if isinstance(due_datetime, str) and re.match(r"\d{2}/\d{2}/\d{4}, \d{2}:\d{2} (AM|PM)", due_datetime):
