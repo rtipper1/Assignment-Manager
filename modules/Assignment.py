@@ -1,8 +1,9 @@
 class Assignment:
-    def __init__(self, name, points, due_date):
+    def __init__(self, name, points, due_date, grade):
         self.name = name
         self.points = points
         self.due_date = due_date
+        self.grade = grade
 
     def get_name(self):
         return self.name
@@ -21,3 +22,9 @@ class Assignment:
 
     def set_due_date(self, due_date):
         self.due_date = due_date
+
+    def get_grade(self):
+        return self.grade
+    
+    def set_grade(self, grade):
+        self.grade = grade
