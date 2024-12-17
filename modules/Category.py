@@ -11,8 +11,9 @@ class Category:
         total_points_earned = 0
 
         for assignment in self.assignments:
-            total_points += assignment.get_points()
-            total_points_earned += assignment.get_points() * assignment.get_grade()
+            if not assignment.get_dropped():
+                total_points += assignment.get_points()
+                total_points_earned += assignment.get_points() * assignment.get_grade()
 
         self.grade = total_points_earned / total_points
 
